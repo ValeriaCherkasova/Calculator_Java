@@ -5,7 +5,15 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         String stroka = sc.nextLine();
-        String[] array = stroka.split("\\s");
+
+        String answer = calc(stroka);
+        System.out.println(answer);
+
+
+    }
+
+    public static String calc(String input) throws Exception {
+        String[] array = input.split("\\s");
 
         if (array.length != 3) {
             System.out.println("ERROR");
@@ -58,17 +66,18 @@ public class Main {
                 }
             }
 
+
             if (a <= 10 & a > 0 & b <= 10 & b > 0) {
 
                 if (array[1].equals("-")) {
-                    t = a - b;
+                    t = Integer.parseInt(minus(a, b));
                     if (t >= 0) {
                         for (int m = 0; m < rar.length; m++) {
                             if (t == m) {
                                 h = rar[m];
                             }
                         }
-                        System.out.println(h);
+                        return h;
                     } else {
                         System.out.println("ERROR");
                         throw new Exception();
@@ -76,30 +85,31 @@ public class Main {
                 }
 
                 if (array[1].equals("+")) {
-                    t = a + b;
+                    t = Integer.parseInt(plus(a, b));
                     for (int m = 0; m < rar.length; m++) {
                         if (t == m)
                             h = rar[m];
                     }
-                    System.out.println(h);
+                    return h;
                 }
+
+
                 if (array[1].equals("*")) {
-                    t = a * b;
+                    t = Integer.parseInt(umn(a, b));
                     for (int m = 0; m < rar.length; m++) {
                         if (t == m)
                             h = rar[m];
                     }
-                    System.out.println(h);
+                    return h;
                 }
 
                 if (array[1].equals("/")) {
-                    t = a / b;
+                    t = Integer.parseInt(del(a, b));
                     for (int m = 0; m < rar.length; m++) {
                         if (t == m)
                             h = rar[m];
                     }
-                    System.out.println(h);
-
+                    return h;
                 }
             } else {
                 System.out.println("ERROR");
@@ -115,25 +125,48 @@ public class Main {
             if (a <= 10 & a > 0 & b <= 10 & b > 0) {
 
                 if (array[1].equals("+")) {
-                    System.out.println(a + b);
+                    return plus(a, b);
                 }
 
                 if (array[1].equals("-")) {
-                    System.out.println(a - b);
+                    return minus(a, b);
                 }
 
                 if (array[1].equals("/")) {
-                    System.out.println(a / b);
-
+                    return del(a, b);
                 }
 
+
                 if (array[1].equals("*")) {
-                    System.out.println(a * b);
+                    return umn(a, b);
                 }
             } else {
                 System.out.println("ERROR");
                 throw new Exception();
             }
         }
+        return "ERROR";
     }
+
+
+    public static String plus(int a, int b) {
+        int c = a + b;
+        return Integer.toString(c);
+    }
+
+    public static String minus(int a, int b) {
+        int c = a - b;
+        return Integer.toString(c);
+    }
+
+    public static String umn(int a, int b) {
+        int c = a * b;
+        return Integer.toString(c);
+    }
+
+    public static String del(int a, int b) {
+        int c = a / b;
+        return Integer.toString(c);
+    }
+
 }
